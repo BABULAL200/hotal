@@ -1,0 +1,193 @@
+<% layout('layouts/boilerplate') %>
+
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+    
+    body {
+        background-color: #eef6f9;
+        padding: 0px;
+        
+    }
+    
+    /* Filters */
+    #filters {
+        display: flex;
+        overflow-x: auto;
+        gap: 15px;
+        padding: 10px;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        white-space: nowrap;
+        margin-top: 10px;
+    }
+    
+    .filter {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+        min-width: 80px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+    
+    .filter:hover {
+        color: #007bff;
+    }
+    
+    /* Tax Toggle */
+    .tax-toggle {
+        display: flex;
+        align-items: center;
+        margin: 20px 0;
+        gap: 10px;
+    }
+    
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 40px;
+        height: 20px;
+    }
+    
+    .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+    
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: 0.4s;
+        border-radius: 34px;
+    }
+    
+    .slider::before {
+        position: absolute;
+        content: "";
+        height: 14px;
+        width: 14px;
+        left: 3px;
+        bottom: 3px;
+        background-color: white;
+        transition: 0.4s;
+        border-radius: 50%;
+    }
+    
+    input:checked + .slider {
+        background-color: #007bff;
+    }
+    
+    input:checked + .slider::before {
+        transform: translateX(20px);
+    }
+    
+    /* Listings */
+    .listings-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+    }
+    
+    .listing-card {
+        background: #fff;
+        border-radius: 10px;
+        overflow: hidden;
+        text-decoration: none;
+        color: black;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        transition: 0.3s;
+    }
+    
+    .listing-card:hover {
+        transform: scale(1.05);
+    }
+    
+    .listing-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
+    
+    .card-body {
+        padding: 10px;
+    }
+    
+    .tax-info {
+        display: none;
+        font-size: 0.9rem;
+        color: gray;
+       
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+        .filter p {
+            font-size: 12px;
+        }
+        .listing-card img {
+            height: 150px;
+        }
+    }
+    
+    </style>
+</head>
+
+<body>
+    <div id="filters">
+        <div class="filter"><i class="fa-solid fa-fire"></i><p>Trending</p></div>
+        <div class="filter"><i class="fa-solid fa-bed"></i><p>Room</p></div>
+        <div class="filter"><i class="fa-solid fa-mountain-city"></i><p>Iconic Cities</p></div>
+        <div class="filter"><i class="fa-solid fa-mountain-sun"></i><p>Mountain</p></div>
+        <div class="filter"><i class="fa-solid fa-person-swimming"></i><p>Amazing Pools</p></div>
+        <div class="filter"><i class="fa-solid fa-square-parking"></i><p>Parking</p></div>
+        <div class="filter"><i class="fa-solid fa-campground"></i><p>Camping</p></div>
+        <div class="filter"><i class="fa-solid fa-phone"></i><p>Telephone</p></div>
+        <div class="filter"><i class="fa-solid fa-wifi"></i><p>WiFi</p></div>
+    </div>
+    
+    <div class="tax-toggle">
+        <label class="switch">
+            <input type="checkbox" id="taxSwitch">
+            <span class="slider"></span>
+        </label>
+        <p>Display total after taxes</p>
+    </div>
+
+    <div class="listings-container">
+        <% for(let listing of allListings) { %>
+            <a href="/listings/<%= listing._id %>" class="listing-card">
+            
+
+                <img src="<%= listing.image.url %>" alt="Listing Image">
+                <div class="card-body">
+                    <h4><%= listing.title %></h4>
+                        <p>&#8377; <%= listing.price.toLocaleString("en-IN") %> /night <span class="tax-info">+18% GST</span></p>
+                </div>
+            </a>
+        <% } %>
+    </div>
+
+    <script>
+        document.getElementById("taxSwitch").addEventListener("click", () => {
+            document.querySelectorAll(".tax-info").forEach(info => {
+                info.style.display = info.style.display === "none" ? "inline" : "none";
+            });
+        });
+    </script>
+</body>
+</html>
