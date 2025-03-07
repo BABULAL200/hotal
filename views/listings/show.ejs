@@ -1,194 +1,93 @@
 <% layout('layouts/boilerplate') %>
 <style>
-    /* ========== General Styles ========== */
+
+/* 🌟 General Styles */
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f8f9fa;
-    margin: 0;
-    padding: 0;
+    background-color: #f8f9fa; /* ✅ हल्का ग्रे बैकग्राउंड */
+    font-family: 'Poppins', sans-serif;
 }
 
-/* ========== Listing Card ========== */
+/* 🌟 Listing Card */
 .show-card {
-    background: #ffffff;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-    max-width: 600px;
-    width: 100%;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
 }
 
-/* Listing Image */
 .show-img {
     width: 100%;
-    height: auto;
-    border-radius: 10px;
+    height: 300px;
+    object-fit: cover;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
 }
 
-/* ========== Buttons Fix ========== */
+/* 🌟 Card Content */
+.card-body {
+    padding: 15px;
+}
+
+.card-text {
+    font-size: 1.1rem;
+    color: #333;
+}
+
+/* 🌟 Edit & Delete Buttons */
 .btns {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: start;
     gap: 10px;
     margin: 20px 0;
-    flex-wrap: wrap;
-   
-}
-
-.btn {
-    padding: 10px 18px;
-    border-radius: 8px;
-    font-size: 15px;
-    font-weight: bold;
-    text-transform: uppercase;
-    transition: 0.3s ease-in-out;
 }
 
 .edit-btn {
-    background-color: #007bff;
-    color: white;
-    border: none;
-}
-
-.edit-btn:hover {
-    background-color: #0056b3;
-}
-
-.delete-btn {
-    background-color: #dc3545;
-    color: white;
-    border: none;
-}
-
-.delete-btn:hover {
-    background-color: #a71d2a;
+    width: 100px;
 }
 
 
 
-/* ========== Responsive Fix ========== */
+/* 🌟 Reviews Styling */
+.row p b {
+    font-size: 1.4rem;
+}
+
+/* 🎯 Fix Comment Box Size */
+textarea#comment {
+    height: 120px !important; /* ✅ सही साइज़ */
+    resize: vertical; /* ✅ यूजर सिर्फ ऊपर-नीचे बड़ा कर सकता है */
+    border-radius: 8px; /* ✅ कोनों को थोड़ा गोल करने के लिए */
+    padding: 10px;
+    font-size: 1rem;
+    
+}
+
+
+/* 🌟 Responsive Design */
 @media (max-width: 768px) {
-    .show-card {
-        max-width: 95%;
-        margin: 0 auto;
+    .col-8, .col-6, .col-10, .col-7 {
+        width: 80%!important;
+        margin: auto;
     }
 
     .btns {
         flex-direction: column;
-        align-items: center;
-        max-width: 95%;
-        margin: 0 auto;
-        
+        align-items: cente;
     }
 
-    .edit-btn, .delete-btn {
-        width: 100%;
-        text-align: center;
-        max-width: 95%;
-        margin: 0 auto;
+    .btns .btn {
+        width: 50%;
+    }
+
+
+    .show-img {
+        height: 250px;
     }
 }
 
-
-
-/* General Styles */
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f8f9fa;
-    margin: 0;
-    padding: 0;
-}
-
-.review-container {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-/* Review Form */
-#reviewForm {
-    background: #ffffff;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-
-
-
-/* Review Cards */
-.review-card {
-    background: #ffffff;
-    border-radius: 10px;
-    padding: 15px;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-    margin-bottom: 15px;
-}
-
-/* Card Title */
-.review-card h5 {
-    font-size: 16px;
-    font-weight: bold;
-}
-
-/* Review Text */
-.review-card p {
-    font-size: 14px;
-    color: #333;
-}
-
-/* Delete Button */
-.review-card .btn {
-    font-size: 12px;
-    padding: 5px 10px;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .review-container {
-        width: 90%;
-    }
-
-    .review-card {
-        width: 100%;
-    }
-
- 
-}
-
-.review-container {
-    max-width: 600px; /* Container width controlled */
-    margin: 20px auto; /* Center align */
-    padding: 20px;
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
-
-/* Form Center Properly */
-#reviewForm {
-    width: 100%;
-    background: #ffffff;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-/* Remove Bootstrap Offset */
-.offset-3 {
-    margin-left: auto !important;
-    margin-right: auto !important;
-}
-
-</style>
+    
+    </style>
+    
     <body>
         <div class="row mt-3">
             <div class="col-8 offset-3  ">
@@ -199,7 +98,7 @@ body {
                
 
                  <!-- <img src="<%=listing.image.url%>" class="card-img-top show-img" alt="listing_image"/>  -->
-                 <img src="<%= listing.image.url %>" class="card-img-top show-img" alt="listing_image"/>
+                 <img src="<%= listing.image %>" class="card-img-top show-img" alt="listing_image"/>
 
                     <div class="card-body">
                     <p class="card-body">owned by <i> <%= listing.owner.username%></i></p>
@@ -221,81 +120,73 @@ body {
         </div>
       
 <% if(currUser && listing.owner._id.equals(currUser._id)) { %>
-
-        <div class=" btns">
-            <a href="/listings/<%= listing._id%>/edit" class="btn btn-dark col-1 offset-3 edit-btn">Edit </a>
-        
-       
-      
-            <form method="POST" action="/listings/<%=listing._id%>?_method=DELETE">
-                <button class="btn btn-dark offset-5"> Delete </button>
-            </form>
-        </div> 
-        <% } %>
+    <div class=" btns">
+        <a href="/listings/<%= listing._id%>/edit" class="btn btn-dark col-1 offset-3 edit-btn">Edit </a>
     
-        
-        <div class="col-10 offset-3 mb-3">
-            <% if(currUser){ %>
-        <hr>
-            <h4>Leave a Review</h4>
-            <form id="reviewForm" action="/listings/<%= listing.id %>/reviews" method="post" novalidate class="needs-validation">
-                <div class="mb-3 mt-3">
-                    <label for="rating" class="form-label">Rating</label>
-                <fieldset class="starability-slot">
-        
-                    <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked aria-label="No rating." />
-                    <input type="radio" id="first-rate1" name="review[rating]" value="1" />
-                    <label for="first-rate1" title="Terrible">1 star</label>
-                    <input type="radio" id="first-rate2" name="review[rating]" value="2" />
-                    <label for="first-rate2" title="Not good">2 stars</label>
-                    <input type="radio" id="first-rate3" name="review[rating]" value="3" />
-                    <label for="first-rate3" title="Average">3 stars</label>
-                    <input type="radio" id="first-rate4" name="review[rating]" value="4" />
-                    <label for="first-rate4" title="Very good">4 stars</label>
-                    <input type="radio" id="first-rate5" name="review[rating]" value="5" />
-                    <label for="first-rate5" title="Amazing">5 stars</label>
-                  </fieldset>
-                </div>
+        <form method="POST" action="/listings/<%=listing._id%>?_method=DELETE">
+            <button class="btn btn-dark offset-5"> Delete </button>
+        </form>
+    </div> 
+    <% } %>
 
-                <div class="mb-3 mt-3">
-                    <label for="comment" class="form-label">Comments</label>
-                    <textarea 
-                        name="review[comment]" 
-                        id="comment" 
-                        cols="30" 
-                        rows="5"
-                        class="form-control"
-                        required></textarea>
-                    <div class="invalid-feedback">Please submit some comments for review</div>
-                </div>
-                <button type="submit" class="btn btn-outline-dark">Submit</button>
-            </form>
-           
+    
+    <div class="col-10 offset-3 mb-3">
+        <% if(currUser){ %>
     <hr>
-    <% } %>
-
-    <% if(listing.reviews.length >0 ){ %>
-<div class="row">
-    <p><b>All Reviews</b></p>
-    <% for(let review of listing.reviews) { %>
-        <div class="card col-7 ms-3 mb-3">
-            <div class="card-body">
-                <h5 class="card-title">@<%= review.author.username %></h5>
-                <p class="starability-result card-text" data-rating="<%= review.rating %>"></p>
-                <p class="card-text"><%= review.comment %></p>
-                <form 
-                  class="mb-3" 
-                  method="POST" 
-                  action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE">
-                  <button class="btn btn-sm btn-dark">Delete</button>
-                </form>
+        <h4>Leave a Review</h4>
+        <form id="reviewForm" action="/listings/<%= listing.id %>/reviews" method="post" novalidate class="needs-validation">
+            <div class="mb-3 mt-3">
+                <label for="rating" class="form-label">Rating</label>
+            <fieldset class="starability-slot">
+    
+                <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked aria-label="No rating." />
+                <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+                <label for="first-rate1" title="Terrible">1 star</label>
+                <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+                <label for="first-rate2" title="Not good">2 stars</label>
+                <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+                <label for="first-rate3" title="Average">3 stars</label>
+                <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+                <label for="first-rate4" title="Very good">4 stars</label>
+                <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+                <label for="first-rate5" title="Amazing">5 stars</label>
+              </fieldset>
             </div>
+
+            <div class="mb-3 mt-3">
+                <label for="comment" class="form-label">Comments</label>
+                <textarea 
+                    name="review[comment]" 
+                    id="comment" 
+                    cols="30" 
+                    rows="5"
+                    class="form-control"
+                    required></textarea>
+                <div class="invalid-feedback">Please submit some comments for review</div>
+            </div>
+            <button type="submit" class="btn btn-outline-dark">Submit</button>
+        </form>
+       
+<hr>
+<% } %>
+
+<% if(listing.reviews.length >0 ){ %>
+<div class="row">
+<p><b>All Reviews</b></p>
+<% for(let review of listing.reviews) { %>
+    <div class="card col-6 ms-3 mb-3">
+        <div class="card-body">
+            <h5 class="card-title">@<%= review.author.username %></h5>
+            <p class="starability-result card-text" data-rating="<%= review.rating %>"></p>
+            <p class="card-text"><%= review.comment %></p>
+            <form 
+              class="mb-3" 
+              method="POST" 
+              action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE">
+              <button class="btn btn-sm btn-dark">Delete</button>
+            </form>
         </div>
-    <% } %>
-    <% } %>
-    <!-- <div>
-    <h3>Where you'll be</h3>
-        <div id="map"></div>
     </div>
-      -->
+<% } %>
+<% } %>
 </div>

@@ -1,97 +1,134 @@
 <style>
-/* Navbar Main Styling */
+
+/* Global navbar styles */
 .navbar {
-    padding: 10px 20px;
+    width: 100%;
+    background: linear-gradient(135deg, #ff416c, #ff4b2b); /* Gradient background */
+    padding: 12px 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+/* Navbar brand/logo */
 .navbar-brand {
     font-size: 1.5rem;
     font-weight: bold;
+    color: white !important;
+    display: flex;
+    align-items: center;
 }
 
-/* Navbar Items */
-.navbar-nav {
-    width: 100%;
-    text-align: center;
+.navbar-brand i {
+    margin-right: 8px;
+    font-size: 1.6rem;
+}
+
+/* Navbar Links */
+.navbar-nav .nav-link {
+    font-size: 1rem;
+    color: white !important;
+    font-weight: 500;
+    padding: 8px 15px;
+    transition: 0.3s ease-in-out;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #ffdd57 !important;
+    transform: scale(1.1);
 }
 
 /* Search Bar */
 .search-form {
+    width: 40%;
     display: flex;
     align-items: center;
-    justify-content: center;
-    border-radius: 30px;
+    background: white;
+    border-radius: 25px;
     overflow: hidden;
-    border: 1px solid #ccc;
-    background: #fff;
-    margin: 10px auto; /* Center it properly */
-    width: 300px;
+    padding: 5px;
 }
 
 .search-input {
-    border: none;
-    padding: 8px;
-    outline: none;
     width: 100%;
+    border: none;
+    padding: 8px 12px;
+    outline: none;
+    font-size: 1rem;
 }
 
 .search-button {
-    border: none;
-    background: #007bff;
+    background: #ff4b2b;
     color: white;
-    padding: 8px 12px;
-    border-radius: 0;
+    border: none;
+    padding: 8px 15px;
     cursor: pointer;
+    transition: 0.3s;
 }
 
 .search-button:hover {
-    background: #0056b3;
+    background: #ff2b74;
 }
 
-/* Responsive Fix */
+/* Right-side menu */
+.navbar-nav.ms-auto .nav-item {
+    margin-left: 10px;
+}
+
+/* Mobile Styles */
 @media (max-width: 768px) {
-    .search-form {
-        width: 90%;  /* Mobile में full width */
-        display: block;
+    .navbar {
+        padding: 10px;
     }
 
-    .search-input {
-        width: 85%;
-        display: inline-block;
+    .navbar-toggler {
+        border: none;
+        outline: none;
     }
 
-    .search-button {
-        display: inline-block;
-    }
-
-    .navbar-nav {
-        display: flex;
-        flex-direction: column;
-        align-items: center;  /* Center items */
+    .navbar-collapse {
+        background: rgba(255, 255, 255, 0.1);
         padding: 10px 0;
+        backdrop-filter: blur(10px);
     }
 
     .navbar-nav .nav-item {
-        width: 100%;
         text-align: center;
+        margin: 5px 0;
     }
+
+    .search-form {
+        width: 90%;
+        margin: 10px auto;
+    }
+/* Mobile Styles */
+@media (max-width: 768px) {
+    .navbar-collapse {
+        background: black !important; /* ✅ Black background for side menu */
+        padding: 10px 0;
+        backdrop-filter: blur(5px);
+    }
+
+    .navbar-nav .nav-item {
+        text-align: center;
+        margin: 5px 0;
+    }
+
+    .navbar-nav .nav-link {
+        color: white !important; /* ✅ White text for contrast */
+        font-size: 1.2rem;
+    }
+
+    .navbar-nav .nav-link:hover {
+        color: #ffdd57 !important; /* ✅ Yellow hover effect */
+    }
+
+    .search-form {
+        width: 90%;
+        margin: 10px auto;
+
+    
+}
 }
 
-.navbar-brand {
-    color: red !important; /* Red Color */
-    font-weight: bold;
-    font-family: "Poppins", sans-serif; /* Stylish Font */
-    font-size: 22px;
-    text-transform: uppercase;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.navbar-brand i {
-    color: red !important; /* Icon Color Red */
-    font-size: 24px;
-}
 </style>
 
 
@@ -112,7 +149,6 @@
                     <a class="nav-link" href="/listings">Explore</a>
                 </li>
             </ul>
-
             <!-- Search Bar -->
             <form class="search-form d-flex mx-auto" role="search">
                 <input class="form-control search-input" type="search" placeholder="Search destination">

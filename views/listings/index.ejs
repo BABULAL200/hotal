@@ -158,6 +158,8 @@
         <div class="filter"><i class="fa-solid fa-campground"></i><p>Camping</p></div>
         <div class="filter"><i class="fa-solid fa-phone"></i><p>Telephone</p></div>
         <div class="filter"><i class="fa-solid fa-wifi"></i><p>WiFi</p></div>
+        
+        
     </div>
     
     <div class="tax-toggle">
@@ -173,7 +175,7 @@
             <a href="/listings/<%= listing._id %>" class="listing-card">
             
 
-                <img src="<%= listing.image.url %>" alt="Listing Image">
+                <img src="<%= listing.image %>" alt="Listing Image">
                 <div class="card-body">
                     <h4><%= listing.title %></h4>
                         <p>&#8377; <%= listing.price.toLocaleString("en-IN") %> /night <span class="tax-info">+18% GST</span></p>
