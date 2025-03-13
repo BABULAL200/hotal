@@ -1,0 +1,17 @@
+<!-- views/bookings/index.ejs -->
+
+<h1>My Bookings</h1>
+<table>
+    <tr>
+        <th>Hotel Name</th>
+        <th>Price</th>
+        <th>Date</th>
+    </tr>
+    <% bookings.forEach(booking => { %>
+        <tr>
+            <td><%= booking.hotelName %></td>
+            <td>₹<%= booking.price %></td>
+            <td><%= booking.date %></td>
+        </tr>
+    <% }) %>
+</table>

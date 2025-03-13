@@ -4,20 +4,19 @@ const mongoose = require("mongoose");
 const path = require("path");
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
-const ExpressError = require("./utils/ExpressError.js");
 const session = require("express-session");
 const flash = require("connect-flash");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const User = require("./models/user.js");
+require("dotenv").config();
 
 const listingRouter = require("./routes/listing.js");
 const reviewRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
+const bookingRouter = require("./routes/bookings.js"); // ✅ बुकिंग रूट ऐड किया
 
-require("dotenv").config(); // ✅ .env से config लोड करने के लिए
-
-// ✅ MongoDB Atlas Connection
+// ✅ MongoDB Connection
 const dbUrl = process.env.ATLASDB_URL || "mongodb://127.0.0.1:27017/wanderlust";
 async function main() {
     try {
@@ -57,7 +56,6 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
-
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
@@ -73,16 +71,11 @@ app.use((req, res, next) => {
 app.use("/listings", listingRouter);
 app.use("/listings/:id/reviews", reviewRouter);
 app.use("/", userRouter);
+app.use("/book", bookingRouter); // ✅ नया बुकिंग रूट ऐड किया
 
 // ✅ 404 Error Handler
 app.all("*", (req, res, next) => {
-    next(new ExpressError(404, "Page not found!"));
-});
-
-// ✅ Error Handling Middleware
-app.use((err, req, res, next) => {
-    let { statusCode = 500, message = "Something went wrong" } = err;
-    res.status(statusCode).render("error.ejs", { message });
+    res.status(404).render("error.ejs", { message: "Page not found!" });
 });
 
 // ✅ Server Start

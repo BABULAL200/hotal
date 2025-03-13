@@ -85,6 +85,86 @@ textarea#comment {
     }
 }
 
+
+/* ✅ होटल डिटेल्स सेक्शन */
+.hotel-details {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.hotel-details h1 {
+    font-size: 28px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.hotel-details p {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+/* ✅ बुकिंग फॉर्म */
+.hotel-details form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hotel-details label {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #444;
+}
+
+.hotel-details input[type="date"] {
+    padding: 8px;
+    width: 80%;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+    margin-bottom: 15px;
+    transition: 0.3s;
+}
+
+.hotel-details input[type="date"]:focus {
+    border-color: #007bff;
+}
+
+/* ✅ बुक नाउ बटन */
+.hotel-details button {
+    padding: 10px 20px;
+    font-size: 18px;
+    color: #fff;
+    background: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.hotel-details button:hover {
+    background: #0056b3;
+}
+
+/* ✅ मोबाइल के लिए रिस्पॉन्सिव */
+@media (max-width: 600px) {
+    .hotel-details {
+        width: 90%;
+    }
+    .hotel-details input[type="date"] {
+        width: 100%;
+    }
+}
+
+
     
     </style>
     
@@ -119,6 +199,22 @@ textarea#comment {
 
         </div>
       
+
+<!-- views/listings/show.ejs -->
+
+<div class="hotel-details">
+    <h1><%= listing.title %></h1>
+    <p>Price: ₹<%= listing.price %></p>
+    <p><%= listing.description %></p>
+    
+    <form action="/book/<%= listing._id %>" method="POST">
+        <label for="date">Select Date:</label>
+        <input type="date" name="date" required>
+        <button type="submit" class="btn btn-primary">Book Now</button>
+    </form>
+</div>
+
+
 <% if(currUser && listing.owner._id.equals(currUser._id)) { %>
     <div class=" btns">
         <a href="/listings/<%= listing._id%>/edit" class="btn btn-dark col-1 offset-3 edit-btn">Edit </a>
